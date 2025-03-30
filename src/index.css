@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a192f; /* Dark background for contrast */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    45deg,
+    #007bff,
+    #00eaff
+  ); /* Blue to cyan gradient */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    45deg,
+    #0056b3,
+    #00c2d1
+  ); /* Darker blue & cyan on hover */
+}
