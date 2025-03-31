@@ -7,15 +7,33 @@ import {
   FiImage,
   FiUser,
   FiRefreshCw,
+  FiShuffle,
 } from "react-icons/fi";
 
 const LetterProfileGenerator = () => {
   const [name, setName] = useState("");
   const [profileLetter, setProfileLetter] = useState("");
   const [bgColor, setBgColor] = useState("#3B82F6");
-  const [imageSize, setImageSize] = useState(200);
-  const [fontSize, setFontSize] = useState(72);
+  const [imageSize, setImageSize] = useState(300);
+  const [fontSize, setFontSize] = useState(120);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [imageStyle, setImageStyle] = useState("square");
+
+  // Function to generate random hex color
+  const getRandomColor = useCallback(() => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }, []);
+
+  const generateRandomColor = useCallback(() => {
+    const randomColor = getRandomColor();
+    setBgColor(randomColor);
+    toast.success("Random color generated!");
+  }, [getRandomColor]);
 
   const generateProfileLetter = useCallback(() => {
     if (!name.trim()) {
@@ -25,8 +43,15 @@ const LetterProfileGenerator = () => {
 
     setIsGenerating(true);
     try {
-      const firstLetter = name.trim().charAt(0).toUpperCase();
-      setProfileLetter(firstLetter);
+      const names = name.trim().split(/\s+/);
+      let letters = names[0].charAt(0).toUpperCase();
+
+      // Add second letter if available
+      if (names.length > 1) {
+        letters += names[names.length - 1].charAt(0).toUpperCase();
+      }
+
+      setProfileLetter(letters.slice(0, 2));
       toast.success("Profile letter generated!");
     } catch (error) {
       console.log(error);
@@ -75,6 +100,28 @@ const LetterProfileGenerator = () => {
     canvas.height = imageSize;
     const ctx = canvas.getContext("2d");
 
+    // Apply shape based on image style
+    if (imageStyle === "circle") {
+      ctx.beginPath();
+      ctx.arc(imageSize / 2, imageSize / 2, imageSize / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+    } else if (imageStyle === "rounded") {
+      const radius = imageSize * 0.1;
+      ctx.beginPath();
+      ctx.moveTo(radius, 0);
+      ctx.lineTo(imageSize - radius, 0);
+      ctx.quadraticCurveTo(imageSize, 0, imageSize, radius);
+      ctx.lineTo(imageSize, imageSize - radius);
+      ctx.quadraticCurveTo(imageSize, imageSize, imageSize - radius, imageSize);
+      ctx.lineTo(radius, imageSize);
+      ctx.quadraticCurveTo(0, imageSize, 0, imageSize - radius);
+      ctx.lineTo(0, radius);
+      ctx.quadraticCurveTo(0, 0, radius, 0);
+      ctx.closePath();
+      ctx.clip();
+    }
+
     // Draw background
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -92,16 +139,11 @@ const LetterProfileGenerator = () => {
     link.href = canvas.toDataURL("image/png");
     link.click();
     toast.success("Image downloaded!");
-  }, [profileLetter, bgColor, imageSize, fontSize]);
+  }, [profileLetter, bgColor, imageSize, fontSize, imageStyle]);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       <div className="container mx-auto ">
-        <Toaster
-          position="top-center"
-          toastOptions={{ className: "dark:bg-gray-800 dark:text-white" }}
-        />
-
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
             Letter Profile Generator
@@ -144,7 +186,13 @@ const LetterProfileGenerator = () => {
 
           <div className="flex justify-center mb-6">
             <div
-              className="rounded-full flex items-center justify-center text-white font-bold shadow-lg"
+              className={`flex items-center justify-center text-white font-bold shadow-lg ${
+                imageStyle === "circle"
+                  ? "rounded-full"
+                  : imageStyle === "rounded"
+                  ? "rounded-xl"
+                  : ""
+              }`}
               style={{
                 backgroundColor: bgColor,
                 width: `${imageSize}px`,
@@ -161,7 +209,7 @@ const LetterProfileGenerator = () => {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Background Color
               </label>
-              <div className="flex items-center">
+              <div className="flex items-center gap-3">
                 <input
                   type="color"
                   value={bgColor}
@@ -171,6 +219,51 @@ const LetterProfileGenerator = () => {
                 <span className="ml-3 text-gray-600 dark:text-gray-400">
                   {bgColor}
                 </span>
+                <button
+                  onClick={generateRandomColor}
+                  className="p-2 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+                  title="Random color"
+                >
+                  <FiShuffle className="text-gray-700 dark:text-gray-300" />
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Image Style
+              </label>
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setImageStyle("square")}
+                  className={`px-4 py-2 rounded-lg ${
+                    imageStyle === "square"
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-200 dark:bg-gray-700"
+                  }`}
+                >
+                  Square
+                </button>
+                <button
+                  onClick={() => setImageStyle("rounded")}
+                  className={`px-4 py-2 rounded-lg ${
+                    imageStyle === "rounded"
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-200 dark:bg-gray-700"
+                  }`}
+                >
+                  Rounded
+                </button>
+                <button
+                  onClick={() => setImageStyle("circle")}
+                  className={`px-4 py-2 rounded-lg ${
+                    imageStyle === "circle"
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-200 dark:bg-gray-700"
+                  }`}
+                >
+                  Circle
+                </button>
               </div>
             </div>
 

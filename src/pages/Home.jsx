@@ -100,7 +100,7 @@ function Home() {
               tools are fast, reliable, and save me hours of work every week."
             </p>
             <p className="font-medium text-gray-500 dark:text-gray-400">
-              - Sarah Johnson, Senior Developer at TechCorp
+              - TN Pro Vip
             </p>
           </div>
         </div>
