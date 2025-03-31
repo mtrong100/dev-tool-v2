@@ -1,61 +1,73 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import React, { Suspense, lazy } from "react";
 import DashboardLayout from "./components/DashboardLayout";
-import CaseConverter from "./pages/CaseConverter";
-import PasswordGenerator from "./pages/PasswordGenerator";
-import TextFormatter from "./pages/TextFormatter";
-import LetterProfileGenerator from "./pages/LetterProfileGenerator";
-import QRCodeGenerator from "./pages/QRCodeGenerator";
-import RandomNumberGenerator from "./pages/RandomNumberGenerator";
-import CSSGradientGenerator from "./pages/CSSGradientGenerator";
-import TextToSpeech from "./pages/TextToSpeech";
-import ImageCropper from "./pages/ImageCropper";
-import OnlineStopwatchTimer from "./pages/OnlineStopwatchTimer";
-import TodoListManager from "./pages/TodoListManager";
-import JokeGenerator from "./pages/JokeGenerator";
-import JsonToCsvConverter from "./pages/JsonToCsvConverter";
-import NumberFormatter from "./pages/NumberFormatter";
-import ColorConverter from "./pages/ColorConverter";
-import ImageResizer from "./pages/ImageResizer";
-import JsonFormatter from "./pages/JsonFormatter";
-import LoremGenerator from "./pages/LoremGenerator";
-import UuidGenerator from "./pages/UuidGenerator";
+import Home from "./pages/Home";
+
+// Lazy-loaded components
+const CaseConverter = lazy(() => import("./pages/CaseConverter"));
+const PasswordGenerator = lazy(() => import("./pages/PasswordGenerator"));
+const TextFormatter = lazy(() => import("./pages/TextFormatter"));
+const LetterProfileGenerator = lazy(() =>
+  import("./pages/LetterProfileGenerator")
+);
+const QRCodeGenerator = lazy(() => import("./pages/QRCodeGenerator"));
+const RandomNumberGenerator = lazy(() =>
+  import("./pages/RandomNumberGenerator")
+);
+const CSSGradientGenerator = lazy(() => import("./pages/CSSGradientGenerator"));
+const TextToSpeech = lazy(() => import("./pages/TextToSpeech"));
+const ImageCropper = lazy(() => import("./pages/ImageCropper"));
+const OnlineStopwatchTimer = lazy(() => import("./pages/OnlineStopwatchTimer"));
+const TodoListManager = lazy(() => import("./pages/TodoListManager"));
+const JokeGenerator = lazy(() => import("./pages/JokeGenerator"));
+const JsonToCsvConverter = lazy(() => import("./pages/JsonToCsvConverter"));
+const NumberFormatter = lazy(() => import("./pages/NumberFormatter"));
+const ColorConverter = lazy(() => import("./pages/ColorConverter"));
+const ImageResizer = lazy(() => import("./pages/ImageResizer"));
+const JsonFormatter = lazy(() => import("./pages/JsonFormatter"));
+const LoremGenerator = lazy(() => import("./pages/LoremGenerator"));
+const UuidGenerator = lazy(() => import("./pages/UuidGenerator"));
 
 function App() {
   return (
     <Router>
       <DashboardLayout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/case-converter" element={<CaseConverter />} />
-          <Route path="/password-generator" element={<PasswordGenerator />} />
-          <Route path="/text-formatter" element={<TextFormatter />} />
-          <Route
-            path="/letter-profile-generator"
-            element={<LetterProfileGenerator />}
-          />
-          <Route path="/qr-code-generator" element={<QRCodeGenerator />} />
-          <Route
-            path="/random-number-generator"
-            element={<RandomNumberGenerator />}
-          />
-          <Route
-            path="/css-gradient-generator"
-            element={<CSSGradientGenerator />}
-          />
-          <Route path="/text-to-speech" element={<TextToSpeech />} />
-          <Route path="/image-cropper" element={<ImageCropper />} />
-          <Route path="/online-stopwatch" element={<OnlineStopwatchTimer />} />
-          <Route path="/todo-list-manager" element={<TodoListManager />} />
-          <Route path="/joke-generator" element={<JokeGenerator />} />
-          <Route path="/json-to-csv" element={<JsonToCsvConverter />} />
-          <Route path="/number-formatter" element={<NumberFormatter />} />
-          <Route path="/color-converter" element={<ColorConverter />} />
-          <Route path="/image-resizer" element={<ImageResizer />} />
-          <Route path="/json-formatter" element={<JsonFormatter />} />
-          <Route path="/lorem-generator" element={<LoremGenerator />} />
-          <Route path="/uuid-generator" element={<UuidGenerator />} />
-        </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/case-converter" element={<CaseConverter />} />
+            <Route path="/password-generator" element={<PasswordGenerator />} />
+            <Route path="/text-formatter" element={<TextFormatter />} />
+            <Route
+              path="/letter-profile-generator"
+              element={<LetterProfileGenerator />}
+            />
+            <Route path="/qr-code-generator" element={<QRCodeGenerator />} />
+            <Route
+              path="/random-number-generator"
+              element={<RandomNumberGenerator />}
+            />
+            <Route
+              path="/css-gradient-generator"
+              element={<CSSGradientGenerator />}
+            />
+            <Route path="/text-to-speech" element={<TextToSpeech />} />
+            <Route path="/image-cropper" element={<ImageCropper />} />
+            <Route
+              path="/online-stopwatch"
+              element={<OnlineStopwatchTimer />}
+            />
+            <Route path="/todo-list-manager" element={<TodoListManager />} />
+            <Route path="/joke-generator" element={<JokeGenerator />} />
+            <Route path="/json-to-csv" element={<JsonToCsvConverter />} />
+            <Route path="/number-formatter" element={<NumberFormatter />} />
+            <Route path="/color-converter" element={<ColorConverter />} />
+            <Route path="/image-resizer" element={<ImageResizer />} />
+            <Route path="/json-formatter" element={<JsonFormatter />} />
+            <Route path="/lorem-generator" element={<LoremGenerator />} />
+            <Route path="/uuid-generator" element={<UuidGenerator />} />
+          </Routes>
+        </Suspense>
       </DashboardLayout>
     </Router>
   );

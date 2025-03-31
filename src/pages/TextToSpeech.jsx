@@ -164,11 +164,6 @@ const TextToSpeech = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       <div className="container mx-auto ">
-        <Toaster
-          position="top-center"
-          toastOptions={{ className: "dark:bg-gray-800 dark:text-white" }}
-        />
-
         {/* Header */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
