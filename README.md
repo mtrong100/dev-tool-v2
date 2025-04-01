@@ -1,65 +1,77 @@
 # DevToolV2
 
-DevToolV2 is a collection of essential web-based tools designed to help developers with various tasks, including text formatting, image resizing, password generation, and more. Built with **HTML, CSS, JavaScript, and Bootstrap**, this project provides a simple yet powerful UI for everyday development needs.
+DevToolV2 is a powerful set of utility tools designed for developers to enhance their workflow. Built with React.js and Tailwind CSS, this project provides a collection of commonly used tools in software development, such as case conversion, password generation, text formatting, and more.
 
-## 🚀 Features
+## Features
 
-- **Case Converter** - Convert text to uppercase, lowercase, or title case.
-- **Password Generator** - Generate secure passwords with customizable options.
-- **Text Formatter** - Format and clean up text easily.
-- **Lorem Generator** - Generate placeholder text.
-- **Image Resizer** - Resize images without losing quality.
-- **Letter Profile Image Generator** - Create profile images with initials.
-- **Color Converter** - Convert between HEX, RGB, and other color formats.
-- **JSON Formatter** - Beautify and validate JSON data.
-- **UUID Generator** - Generate unique identifiers.
+- **Case Converter**: Convert text between different cases (uppercase, lowercase, camelCase, etc.)
+- **Password Generator**: Generate secure and customizable passwords.
+- **Text Formatter**: Format and beautify text for easier readability.
+- **Lorem Generator**: Generate placeholder text for development.
+- **Image Resizer**: Resize images easily to meet your project needs.
+- **Letter Profile Image Generator**: Generate profile images with initials.
+- **Color Converter**: Convert colors between hex, RGB, and other formats.
+- **JSON Formatter**: Beautify and format JSON data for better readability.
+- **UUID Generator**: Generate unique identifiers (UUIDs) for various use cases.
 
-## 🛠️ Technologies Used
+## Tech Stack
 
-- **Frontend:** HTML, CSS, JavaScript, Bootstrap
-- **UI Framework:** Bootstrap for responsive design
-- **Theme:** Supports light, dark, and system mode (stored in localStorage with the key `PG_THEME`).
+- **Frontend**: React.js, Tailwind CSS
+- **State Management**: React Context API
+- **Styling**: Tailwind CSS for a clean and responsive UI
 
-## 📂 Project Structure
+## Installation
 
-```
-DevToolV2/
-│── index.html           # Main HTML file
-│── src/
-│   ├── styles.css       # Custom CSS styles
-│   ├── main.js          # Core JavaScript file
-│   ├── utils/           # Helper functions for various tools
-│   ├── components/      # JavaScript modules for each tool
-│── assets/
-│   ├── images/          # Static images and icons
-│── README.md            # Project documentation
-```
+To get started with DevToolV2, follow these steps:
 
-## 🔧 Installation & Usage
+1. Clone the repository:
 
-1. **Clone the Repository**
-   ```sh
-   git clone https://github.com/yourusername/DevToolV2.git
-   cd DevToolV2
+   ```bash
+   git clone https://github.com/mtrong100/dev-tool-v2.git
    ```
-2. **Open `index.html` in a browser**
-   - No need for additional setup; it runs directly in the browser.
 
-## 🌍 Live Demo
-[View Live](https://yourwebsite.com) *(Replace with your live URL)*
+2. Navigate to the project directory:
 
-## 🎨 Theme Support
-- Light, Dark, and System mode
-- Stored in `localStorage` under `PG_THEME`
+   ```bash
+   cd dev-tool-v2
+   ```
 
-## 📌 SEO & Social Media Meta Tags
-DevToolV2 includes meta tags for **SEO optimization** and **social media previews** (Open Graph & Twitter cards).
+3. Install the dependencies:
 
-## 📝 License
-This project is licensed under the **MIT License**.
+   ```bash
+   npm install
+   ```
 
-## 🙌 Contributing
-Feel free to submit pull requests and contribute to this project. Suggestions and feature requests are always welcome!
+4. Run the development server:
+   ```bash
+   npm start
+   ```
 
-## 📧 Contact
-For inquiries or support, reach out at [your.email@example.com] or visit [yourwebsite.com].
+The app should now be running at [http://localhost:3000](http://localhost:3000).
+
+## Usage
+
+Once the app is up and running, you can use any of the utility tools listed in the features section. Each tool is accessible through a user-friendly interface and can be interacted with directly from the browser.
+
+## Contributing
+
+Contributions are always welcome! If you have an idea for a new tool or an improvement to an existing one, feel free to submit a pull request.
+
+### Steps to Contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -am 'Add new feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Tailwind CSS for providing a utility-first framework for styling.
+- React.js for making building the frontend easy and efficient.
+- Open-source contributors for helping to make this project better.
