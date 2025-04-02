@@ -29,6 +29,7 @@ const LoremGenerator = lazy(() => import("./pages/LoremGenerator"));
 const UuidGenerator = lazy(() => import("./pages/UuidGenerator"));
 const GrammarFixer = lazy(() => import("./pages/GrammarFixer"));
 const BetterComment = lazy(() => import("./pages/BetterComment"));
+const ImageShapeConverter = lazy(() => import("./pages/ImageShapeConverter"));
 
 function App() {
   return (
@@ -70,6 +71,10 @@ function App() {
             <Route path="/lorem-generator" element={<LoremGenerator />} />
             <Route path="/uuid-generator" element={<UuidGenerator />} />
             <Route path="/better-comment" element={<BetterComment />} />
+            <Route
+              path="/image-shape-converter"
+              element={<ImageShapeConverter />}
+            />
           </Routes>
         </Suspense>
       </DashboardLayout>

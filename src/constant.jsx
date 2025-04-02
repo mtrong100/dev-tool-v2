@@ -27,6 +27,7 @@ import {
   PencilSquareIcon,
   CheckBadgeIcon,
   EyeDropperIcon,
+  Square2StackIcon,
 } from "@heroicons/react/24/outline";
 
 export const navItems = [
@@ -75,6 +76,11 @@ export const navItems = [
     path: "/text-formatter",
     icon: PencilSquareIcon,
     label: "Text Formatter",
+  },
+  {
+    path: "/image-shape-converter",
+    icon: Square2StackIcon,
+    label: "Image Shape",
   },
   {
     path: "/qr-code-generator",
