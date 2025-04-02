@@ -27,6 +27,8 @@ const ImageResizer = lazy(() => import("./pages/ImageResizer"));
 const JsonFormatter = lazy(() => import("./pages/JsonFormatter"));
 const LoremGenerator = lazy(() => import("./pages/LoremGenerator"));
 const UuidGenerator = lazy(() => import("./pages/UuidGenerator"));
+const GrammarFixer = lazy(() => import("./pages/GrammarFixer"));
+const BetterComment = lazy(() => import("./pages/BetterComment"));
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
             <Route path="/case-converter" element={<CaseConverter />} />
             <Route path="/password-generator" element={<PasswordGenerator />} />
             <Route path="/text-formatter" element={<TextFormatter />} />
+            <Route path="/grammar-fixer" element={<GrammarFixer />} />
             <Route
               path="/letter-profile-generator"
               element={<LetterProfileGenerator />}
@@ -66,6 +69,7 @@ function App() {
             <Route path="/json-formatter" element={<JsonFormatter />} />
             <Route path="/lorem-generator" element={<LoremGenerator />} />
             <Route path="/uuid-generator" element={<UuidGenerator />} />
+            <Route path="/better-comment" element={<BetterComment />} />
           </Routes>
         </Suspense>
       </DashboardLayout>

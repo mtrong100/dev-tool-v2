@@ -131,7 +131,7 @@ function DashboardLayout({ children }) {
 
       {/* Main Content */}
       <div className="flex-1 min-h-screen flex flex-col">
-        <main className="flex-1 bg-gray-50 dark:bg-gray-900 p-3 mt-24 mb-10 md:px-5 md:py-10 md:mt-10">
+        <main className="flex-1 bg-gray-50 dark:bg-gray-900 mt-20 mb-5 p-5 md:p-10 md:mt-0 md:mb-0">
           {children}
         </main>
       </div>

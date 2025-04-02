@@ -172,7 +172,7 @@ const OnlineStopwatchTimer = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
-      <div className="container mx-auto">
+      <div>
         {/* Hidden audio element for timer alarm */}
         <audio
           ref={audioRef}

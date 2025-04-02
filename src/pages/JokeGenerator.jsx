@@ -145,7 +145,7 @@ const JokeGenerator = () => {
   };
 
   return (
-    <div className="mx-auto">
+    <div>
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-colors duration-200">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-white">
