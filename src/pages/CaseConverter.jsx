@@ -4,6 +4,7 @@ import { FiCopy, FiDownload, FiUpload, FiX } from "react-icons/fi";
 
 const CaseConverter = () => {
   const [text, setText] = useState("");
+  const [originalText, setOriginalText] = useState("");
   const [charCount, setCharCount] = useState(0);
   const [wordCount, setWordCount] = useState(0);
   const [lineCount, setLineCount] = useState(0);
@@ -14,21 +15,24 @@ const CaseConverter = () => {
     setLineCount(text.trim() ? text.split("\n").length : 0);
   }, [text]);
 
-  const handleChange = (e) => setText(e.target.value);
+  const handleChange = (e) => {
+    setText(e.target.value);
+    setOriginalText(e.target.value);
+  };
 
   const convertCase = (type) => {
-    let convertedText = "";
+    let convertedText = originalText;
     switch (type) {
       case "upper":
-        convertedText = text.toUpperCase();
+        convertedText = originalText.toUpperCase();
         toast.success("Converted to UPPERCASE!");
         break;
       case "lower":
-        convertedText = text.toLowerCase();
+        convertedText = originalText.toLowerCase();
         toast.success("Converted to lowercase!");
         break;
       case "title":
-        convertedText = text
+        convertedText = originalText
           .toLowerCase()
           .split(" ")
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -36,17 +40,17 @@ const CaseConverter = () => {
         toast.success("Converted to Title Case!");
         break;
       case "sentence":
-        convertedText = text
+        convertedText = originalText
           .toLowerCase()
           .replace(/(^\s*\w|[.!?]\s*\w)/g, (c) => c.toUpperCase());
         toast.success("Converted to Sentence Case!");
         break;
       case "reverse":
-        convertedText = text.split("").reverse().join("");
+        convertedText = originalText.split("").reverse().join("");
         toast.success("Text Reversed!");
         break;
       case "alternating":
-        convertedText = text
+        convertedText = originalText
           .split("")
           .map((char, i) =>
             i % 2 === 0 ? char.toLowerCase() : char.toUpperCase()
@@ -55,7 +59,7 @@ const CaseConverter = () => {
         toast.success("Converted to AlTeRnAtInG cAsE!");
         break;
       case "inverse":
-        convertedText = text
+        convertedText = originalText
           .split("")
           .map((char) =>
             char === char.toUpperCase()
@@ -65,14 +69,45 @@ const CaseConverter = () => {
           .join("");
         toast.success("Converted to iNVERSE cASE!");
         break;
+      case "camel":
+        convertedText = originalText
+          .toLowerCase()
+          .replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase())
+          .replace(/\s+/g, "");
+        toast.success("Converted to camelCase!");
+        break;
+      case "kebab":
+        convertedText = originalText
+          .toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/[^\w-]+/g, "");
+        toast.success("Converted to kebab-case!");
+        break;
+      case "snake":
+        convertedText = originalText
+          .toLowerCase()
+          .replace(/\s+/g, "_")
+          .replace(/[^\w_]+/g, "");
+        toast.success("Converted to snake_case!");
+        break;
+      case "pascal":
+        convertedText = originalText
+          .toLowerCase()
+          .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
+            +match === 0 ? "" : match.toUpperCase()
+          )
+          .replace(/[^\w]/g, "");
+        toast.success("Converted to PascalCase!");
+        break;
       default:
-        return text;
+        return originalText;
     }
     setText(convertedText);
   };
 
   const handleClearText = () => {
     setText("");
+    setOriginalText("");
     toast("Text cleared!", { icon: "🗑️" });
   };
 
@@ -105,6 +140,7 @@ const CaseConverter = () => {
     const reader = new FileReader();
     reader.onload = (event) => {
       setText(event.target.result);
+      setOriginalText(event.target.result);
       toast.success("File uploaded successfully!");
     };
     reader.onerror = () => toast.error("Error reading file!");
@@ -126,6 +162,10 @@ const CaseConverter = () => {
     { label: "Reverse text", action: () => convertCase("reverse") },
     { label: "AlTeRnAtInG", action: () => convertCase("alternating") },
     { label: "iNVERSE cASE", action: () => convertCase("inverse") },
+    { label: "camelCase", action: () => convertCase("camel") },
+    { label: "kebab-case", action: () => convertCase("kebab") },
+    { label: "snake_case", action: () => convertCase("snake") },
+    { label: "PascalCase", action: () => convertCase("pascal") },
   ];
 
   return (
